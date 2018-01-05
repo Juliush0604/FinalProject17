@@ -1,9 +1,10 @@
 from functions import Warrior
+import random
 
 #Asks for character class
-mclass = input("Are you a Warrior, a Mage, or a Rogue?\n")
+mclass = input("What are you?\n[Warrior] [Mage] [Rogue] [Priest]\n")
 
-if mclass == "Warrior" or "warrior" or "W" or "w":
+if mclass.lower() == "warrior":
     mcharacter = Warrior()
 else:
     None
@@ -12,20 +13,22 @@ else:
 mcharacter.name = input("What is your name?\n")
 
 while True:
-    start_item = input("What would like as your starting item? \n[Health Potion] [Mana Potion] [Wallet] [Torch]\n")
-    if start_item == '1':
+    start_item = input("What would like as your starting item? \n[Health Potion] [Mana Potion] [Scanner] [Torch]\n")
+    if start_item.lower() == 'health potion':
         mcharacter.add_item('Health Potion')
         break
-    elif start_item == '2':
+    elif start_item.lower() == 'mana potion':
         mcharacter.add_item('Mana Potion')
         break
-    elif start_item == '3':
-        mcharacter.add_item('Wallet')
+    elif start_item.lower() == 'scanner':
+        mcharacter.add_item('Scanner')
         break
-    elif start_item == '4':
+    elif start_item.lower == 'torch':
         mcharacter.add_item('Torch')
+        mcharacter.vision = 1
         break
     else:
         print('That is not an option')
 
-from functions import show_stats
+while True:
+
