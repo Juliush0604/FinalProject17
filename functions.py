@@ -1,10 +1,10 @@
+import random
 """Functions"""
 def room_creation():
-    rooms = random.randint(0,6)
-    print(f"There are {rooms} rooms in front of you.")
-    if mcharacter.vision == 0:
-        print("You cannot see anything within the rooms")
-    else:
+    for name in range(random.randint(0,6)):
+        rooms.append(room(name))
+
+
 
 
 
@@ -47,4 +47,13 @@ class Warrior():
         print('Name:', self.barriers)
         print("Wealth:", self.wealth)
 
+class room():
+
+    def __init__(self):
+        self.name = 0
+        self.treasure = 0
+        self.healing = 0
+        self.monster = 0
+
 """Lists and Dictionaries"""
+rooms = []

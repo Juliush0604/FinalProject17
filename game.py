@@ -29,6 +29,3 @@ while True:
         break
     else:
         print('That is not an option')
-
-while True:
-
