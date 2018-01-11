@@ -1,20 +1,22 @@
 import random
 """Functions"""
 rooms = []
+possibleRooms = ['room1', 'room2', 'room3', 'room4', 'room5', 'room6']
 
 class room():
 
-    def __init__(self, name):
-        self.name = 0
+    def __init__(self, name, treasure, healing, monster):
+        self.name = name
         self.treasure = 0
         self.healing = 0
         self.monster = 0
 
+
+
 def room_creation():
-    room_amount = random.randint(1,6)
-    for name in range(room_amount):
-        rooms.append(room(name))
+    for rooms in range(random.randint(0,6)):
+        rooms
 
 
-room_creation()
-print(rooms)
+room_creation('test')
+print(test)
