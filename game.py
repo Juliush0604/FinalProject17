@@ -1,19 +1,24 @@
 from functions import Warrior
-import random
+from functions import room
+from functions import rooms
+from functions import room_creation
 
 #Asks for character class
-mclass = input("What are you?\n[Warrior] [Mage] [Rogue] [Priest]\n")
+while True:
+    mclass = input("What are you?\n[Warrior]\n\n")
 
-if mclass.lower() == "warrior":
-    mcharacter = Warrior()
-else:
-    None
+    if mclass.lower() == "warrior":
+        mcharacter = Warrior()
+        break
+    else:
+        print("\nThat is not a valid option\n")
 
 #Asks for character name
-mcharacter.name = input("What is your name?\n")
+mcharacter.name = input("\nWhat is your name?\n\n")
 
 while True:
-    start_item = input("What would like as your starting item? \n[Health Potion] [Mana Potion] [Scanner] [Torch]\n")
+    #Character Creation
+    start_item = input("\nWhat would like as your starting item? \n[Health Potion] [Mana Potion] [Scanner] [Torch]\n\n")
     if start_item.lower() == 'health potion':
         mcharacter.add_item('Health Potion')
         break
@@ -28,4 +33,13 @@ while True:
         mcharacter.vision = 1
         break
     else:
-        print('That is not an option')
+        print('\nThat is not an option')
+
+#Introduction
+room_creation()
+print("\n\n\n\n\n\n\n\n\n\nWelcome to the DEPTHS\n\nYou wake up in a dark room, unsure of where you are")
+room_amount = len(rooms)
+if room_amount == 1:
+    print("There is one room in front of you")
+else:
+    print(f'\nThere are {room_amount} rooms in front of you\n')
