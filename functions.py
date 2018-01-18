@@ -1,5 +1,4 @@
 import random
-
 """Functions"""
 #Creates up to 6 rooms
 def room_creation():
@@ -81,6 +80,19 @@ class room():
             self.monster = 1
         else:
             self.monster = 0
+
+class Skeleton():
+
+    def __init__(self, health, mana, strength, magic, dexerity, barriers, money, name):
+        self.level = level
+        self.health = health
+        self.mana = mana
+        self.strength = strength
+        self.magic = magic
+        self.dexerity = dexerity
+        self.barriers = barriers
+        self.money = money
+        self.name = 'skeleton'
 
 """Lists and Dictionaries"""
 #Creates temporary list of rooms
