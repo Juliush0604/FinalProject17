@@ -61,24 +61,32 @@ level = 1
 monster = SkeletonWarrior()
 
 def battle():
+
     global mcharacter
     global skeleton
     global level
+
     accuracy_constant = round(56 + (76 * (math.log(mcharacter.dexerity / monster.sense))),0)
     while True:
-        print("\nYour health:", mcharacter.health)
-        print("Enemy health:", monster.health)
-        current_action = input("\nWhat will you do?\n[Attack]\n\n")
-        if current_action.lower() == 'attack':
-            print("\nYou swung your sword at the skeleton")
-            attack = random.randint(0,100)
-            if attack <= accuracy_constant:
-                print("\nYour attack hit!")
-                monster.health = monster.health - monster.strength
-            elif attack >= accuracy_constant:
-                print("\nYou missed!")
+        while True:
+            print("\nYour health:", mcharacter.health)
+            print("Enemy health:", monster.health)
+            current_action = input("\nWhat will you do?\n[Attack]\n\n")
+            if current_action.lower() == 'attack':
+                print("\nYou swung your sword at the skeleton")
+                attack = random.randint(0,100)
+                if attack <= accuracy_constant:
+                    print("\nYour attack hit!")
+                    monster.health = monster.health - monster.strength
+                    break
+                elif attack >= accuracy_constant:
+                    print("\nYou missed!")
+                    break
+                else:
+                    print("Something went wrong...")
+                    break
             else:
-                print("Something went wrong...")
+                print("That is not a valid option")
         if mcharacter.health <= 0:
             print("\nYou died!!!")
             sys.exit()

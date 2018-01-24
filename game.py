@@ -56,7 +56,7 @@ def describe_rooms():
     global mcharacter
     room_amount = len(rooms)
     if room_amount == 1:
-        print("There is one room in front of you")
+        print("\nThere is one room in front of you")
     else:
         print(f'\nThere are {room_amount} rooms in front of you\n')
 
@@ -88,19 +88,26 @@ def battle():
     accuracy_constant = round(56 + (76 * (math.log(mcharacter.dexerity / monster.sense))),0)
 
     while True:
-        print("\nYour health:", mcharacter.health)
-        print("Enemy health:", monster.health)
-        current_action = input("\nWhat will you do?\n[Attack]\n\n")
-        if current_action.lower() == 'attack':
-            print("\nYou swung your sword at the skeleton")
-            attack = random.randint(0,100)
-            if attack <= accuracy_constant:
-                print("\nYour attack hit!")
-                monster.health = monster.health - monster.strength
-            elif attack >= accuracy_constant:
-                print("\nYou missed!")
+
+        print("\nYour health:", round(mcharacter.health,2))
+        print("Enemy health:", round(monster.health,2))
+
+        while True:
+            current_action = input("\nWhat will you do?\n[Attack]\n\n")
+            if current_action.lower() == 'attack':
+                print("\nYou swung your sword at the skeleton")
+                attack = random.randint(0,100)
+                if attack <= accuracy_constant:
+                    print("\nYour attack hit!")
+                    monster.health = monster.health - mcharacter.strength
+                    break
+                elif attack >= accuracy_constant:
+                    print("\nYou missed!")
+                    break
+                else:
+                    print("Something went wrong...")
             else:
-                print("Something went wrong...")
+                print("That is not a valid option")
         if mcharacter.health <= 0:
             print("\nYou died!!!")
             sys.exit()
@@ -150,7 +157,7 @@ class SkeletonWarrior():
     def heal(self):
 
         print("\nThe skeleton warrior covers itself in dirt and lets loose a high pitched screech. It seems to have recovered some health")
-        self.health = self.health + (self.total_health * 0.15)
+        self.health = self.health + (self.total_health * 0.4)
 
     def action(self):
 
@@ -184,7 +191,7 @@ status = 'there is a monster, treasure chest, and a healing spring'
 monster = SkeletonWarrior()
 
 while True:
-    print(f"You are on level {monster.level}")
+    print(f"\nYou are on level {monster.level}")
 
     describe_rooms()
 

@@ -67,7 +67,6 @@ class room():
             self.treasure = 1
         else:
             self.treasure = 0
-
     def healing_chance(self):
         hchance = random.randint(0,100)
         if hchance < 10:
@@ -81,7 +80,6 @@ class room():
             self.monster = 1
         else:
             self.monster = 0
-
 """Lists and Dictionaries"""
 #Creates temporary list of rooms
 rooms = []
