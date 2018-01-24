@@ -92,6 +92,7 @@ def battle():
         print("\nYour health:", round(mcharacter.health,2))
         print("Enemy health:", round(monster.health,2))
 
+        #Executes user action
         while True:
             current_action = input("\nWhat will you do?\n[Attack]\n\n")
             if current_action.lower() == 'attack':
@@ -108,11 +109,14 @@ def battle():
                     print("Something went wrong...")
             else:
                 print("That is not a valid option")
+        #Checks if user is dead
         if mcharacter.health <= 0:
             print("\nYou died!!!")
             sys.exit()
+        #Checks if enemy is dead
         if monster.health <= 0:
             print("\nYou killed the skeleton!")
+            #Level up stats
             mcharacter.health = mcharacter.health + monster.total_health
             mcharacter.strength = mcharacter.strength + (monster.strength * 0.3)
             mcharacter.sense = mcharacter.sense + (monster.sense * 0.1)
@@ -143,7 +147,7 @@ class SkeletonWarrior():
         global mcharacter
 
         accuracy_constant = round(56 + (76 * (math.log(monster.dexerity / mcharacter.sense))),0)
-
+        #Executes enemy actions
         print("\nThe skeleton warrior swung at you with its sword")
         attack = random.randint(0,100)
         if attack <= accuracy_constant:
@@ -155,7 +159,7 @@ class SkeletonWarrior():
             print("Something went wrong...")
 
     def heal(self):
-
+        #Special ability of enemy
         print("\nThe skeleton warrior covers itself in dirt and lets loose a high pitched screech. It seems to have recovered some health")
         self.health = self.health + (self.total_health * 0.4)
 
@@ -163,7 +167,7 @@ class SkeletonWarrior():
 
         global mcharacter
         global h_cooldown
-
+        #Decides what enemy should do
         if self.health <= (self.total_health * 0.5) and self.h_cooldown == 0:
             self.heal()
             self.h_cooldown = 3
@@ -187,14 +191,16 @@ status = 'there is a monster and a healing spring'
 elif rooms[n].treasure == 1 and rooms[n].healing == 1 and rooms[n].monster == 1:
 status = 'there is a monster, treasure chest, and a healing spring'
 """
-
+#Set enemy to skeleton
 monster = SkeletonWarrior()
 
 while True:
+    #Display level
     print(f"\nYou are on level {monster.level}")
 
     describe_rooms()
 
+    #Display rooms
     n = 1
     rooms_to_enter = ''
     for broom in rooms:
@@ -204,6 +210,7 @@ while True:
     current_room = room()
 
     while True:
+        #Moves character to room
         target_room = input(f"Which room would you like to enter?\n{rooms_to_enter}\n\n")
 
         if target_room.lower() == 'room 1':
@@ -227,11 +234,14 @@ while True:
             print("That is not a valid option")
     if current_room.monster == 1:
         print("\nYou tentatively walk into the room. There is a monster!")
+        #starts battle
         battle()
+        #monster level up
         monster.level = monster.level + 1
         monster.health = monster.total_health + 1
     else:
         None
+    #Checks win condition
     if monster.level == 11:
         print("You won!")
         sys.exit()
